@@ -11,3 +11,20 @@ VMAttack 是**IDA PRO** 插件能够使逆向工程师去使用额外的分析�
 ## 快速入门指南
 
 Example目录 包含一个加法函数的被混淆的二进制和原二进制. 被混淆的**addvmp** 包含我们要分析的VM函数.
+
+![alt text](screenshots/overview.png "Problem Statement")
+
+快速查看二进制，我们能看到简单的结构：二个参数 `0AFFE1` and `0BABE5`被部署到栈上，然后一个函数(stub)被调用了。
+
+![alt text](screenshots/stub.png "Problem Statement")
+
+函数开始虚拟机函数引用到了push到栈上的VM字节码.
+
+![alt text](screenshots/stub2.png "Problem Statement")
+
+跟进地址，我们看到虚拟机函数是一个典型的接收字节码的解释器。
+
+
+![alt text](screenshots/switch.png "Interpreter")
+
+这个混淆的一个解决方案是通过逆向工程是逆向解释器并且解释字节码。考虑到这项任务时间消耗的性质，我们将会使用VMAttack plugin逆向这个二进制。
